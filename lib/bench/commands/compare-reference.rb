@@ -26,7 +26,11 @@ module Bench
 
         puts "#{b} " + options.all_implementations.map { |i|
           if reference_score == :failed
-            "reference failed: new score: #{measurements[b, i].score}"
+            if measurements[b, i] == :failed
+              "reference and new failed"
+            else
+              "reference failed: new score: #{measurements[b, i].score}"
+            end
           else
             Stats.format_percent(measurements[b, i].score / reference_score)
           end
