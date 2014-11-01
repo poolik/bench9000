@@ -19,29 +19,6 @@ module Bench
       args = args.dup
 
       command_name = args.shift
-      command = case command_name
-        when "compare"
-          Commands::Compare.new
-        when "compare-reference"
-          Commands::CompareReference.new
-        when "detail"
-          Commands::Detail.new
-        when "list-benchmarks"
-          Commands::ListBenchmarks.new
-        when "list-implementations"
-          Commands::ListImplementations.new
-        when "reference"
-          Commands::Reference.new
-        when "report"
-          Commands::Report.new
-        when "remove"
-          Commands::Remove.new
-        when "score"
-          Commands::Score.new
-        else
-          puts "unknown command #{command_name}"
-          exit
-      end
 
       configs = []
       subjects = []
@@ -160,6 +137,28 @@ module Bench
           file.close
         end
       end
+
+      builtin_commands = {
+        "compare" => Commands::Compare,
+        "compare-reference" => Commands::CompareReference,
+        "detail" => Commands::Detail,
+        "list-benchmarks" => Commands::ListBenchmarks,
+        "list-implementations" => Commands::ListImplementations,
+        "reference" => Commands::Reference,
+        "report" => Commands::Report,
+        "remove" => Commands::Remove,
+        "score" => Commands::Score
+      }
+
+      commands = builtin_commands.merge(config.commands)
+      command = commands[command_name]
+
+      if command.nil?
+        puts "unknown command #{command_name}"
+        exit
+      end
+
+      command = command.new
 
       if command.before options, existing_measurements
         if options.flags.has_key?("--data")

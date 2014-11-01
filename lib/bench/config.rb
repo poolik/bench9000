@@ -15,6 +15,7 @@ module Bench
     attr_reader :benchmarks
     attr_reader :benchmark_groups
     attr_reader :fail_hard_exclusions
+    attr_reader :commands
 
     def initialize
       @implementations = {}
@@ -22,6 +23,7 @@ module Bench
       @benchmarks = {}
       @benchmark_groups = {}
       @fail_hard_exclusions = []
+      @commands = {}
     end
 
     def load(file)
@@ -72,6 +74,12 @@ module Bench
 
     def fails_hard(implementation, benchmark)
       @fail_hard_exclusions.push([implementation, benchmark])
+    end
+
+    def command(name, &body)
+      command_class = Class.new(Commands::Command)
+      command_class.class_eval(&body)
+      @commands[name] = command_class
     end
 
   end
