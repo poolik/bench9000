@@ -9,6 +9,35 @@
 # This file should be kept as simple as possible to accommodate early
 # implementations of Ruby.
 
+
+## STEFAN, I wanted to be nice, but .index doesn't work.
+# iterations = 1
+# if ARGV.include? "--iterations"
+#   iterations = ARGV[ARGV.index("--iterations") + 1].to_i
+# end
+#
+# if ARGV.include? "--inner-iterations"
+#   $inner_iterations = ARGV[ARGV.index("--inner-iterations") + 1].to_i
+#   def micro_harness_iterations
+#     $inner_iterations
+#   end
+# end
+
+## STEFAN: let's not be nice, and just make sure it works
+##  --non-interactive takes two optional parameters:
+##     - iterations       (number of print outs)
+##     - inner iterations (micro_harness_iterations)
+if ARGV[0] == "--non-interactive"
+  if ARGV.length == 3
+    iterations = ARGV[1].to_i
+    $inner_iterations = ARGV[2].to_i
+    def micro_harness_iterations
+      $inner_iterations
+    end
+  end
+end
+
+i = 0
 while true
   input = harness_input
 
@@ -27,7 +56,10 @@ while true
 
   STDOUT.flush
 
-  unless ARGV.include? "--non-interactive"
+  if ARGV.include? "--non-interactive"
+    i += 1
+    break unless i < iterations
+  else
     command = gets
     break unless command == "continue" || command == "continue\n"
   end
