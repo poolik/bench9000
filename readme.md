@@ -151,6 +151,8 @@ A common use of this is to keep a file with measurements from implementations th
 * `--show-commands` print the implementation commands as they're executed
 * `--show-samples` print individual samples as they're measured
 
+If you want to run a benchmark manually, you can use `--show-commands` to get the Ruby command being run. This command normally expects to be driven by the harness over a pipe to produce more results or to stop. If you want to use the benchmark without the harness you can use the `--loop` command to just keep running forever, printing iteration times, or the `--loopn a b` command to run `a` iterations and `b` micro-iterations if the benchmark is using the micro harness (just set `b` to one if you're not using the micro harness).
+
 ## Configuration
 
 Configuration files specify the available Ruby implementations, benchmarks and benchmark groups. A configuration file is automatically loaded with sensible defaults. You can load additional configuration files for any command using `--config file`.
