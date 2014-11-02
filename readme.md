@@ -6,7 +6,7 @@ Questions that we aim to answer include 'have my last few commits affected perfo
 
 We focus on macro benchmarks (at least a screen-full of code and hopefully much more) and kernels isolated from production code. We also focus primarily on peak temporal performance (how fast it runs when it's warmed up), but we do include measurements of how long warmup takes.
 
-We include common synthetic benchmarks as well as benchmarks taken from unmodified off-the-self gems in use in production today.
+We include common synthetic benchmarks as well as benchmarks taken from unmodified off-the-shelf gems in use in production today.
 
 Another focus is being gentle on early implementations of Ruby. Benchmarks are run in a subprocess with minimal language requirements for the harness.
 
@@ -48,7 +48,7 @@ There are several formats which you can print detailed information in. In all fo
     shootout-mandelbrot rbx-2.2.10 score 2000
     ...
 
-`--benchmark-per-line` lists one benchmark per line with clusters of values for each implementation and no keys, perhaps for pasting into a spreadsheet:
+`--benchmark-per-line` lists one benchmark per line, with clusters of values for each implementation and no keys, perhaps for pasting into a spreadsheet:
 
     bench detail 2.1.4 rbx-2.2.10 shootout --benchmark-per-line
 
@@ -206,10 +206,10 @@ We consider an implementation to be warmed up when the last N samples have a ran
 
 We then take S samples (starting with the last N that passed our warmup test) for our measurements.
 
-If you are going to publish results based on these benchmarks, you should manually verify warmup using lag or autocorrelation plots.
+If you are going to publish results based on these benchmarks, you should manually verify warmup using lag or auto-correlation plots.
 
 We have chosen N to be 10, E to be 0.2 and S to be 10. These are arbitrary, but by comparing with the lag plots of our data they do seem to do the right thing.
 
 ### Error
 
-We currently the standard deviation as our error.
+We currently use the standard deviation as our error.
