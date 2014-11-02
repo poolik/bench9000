@@ -9,6 +9,17 @@
 # This file should be kept as simple as possible to accommodate early
 # implementations of Ruby.
 
+if ARGV[0] == "--loopn"
+  ITERATIONS = ARGV[1].to_i
+  INNER_ITERATIONS = ARGV[2].to_i
+
+  def micro_harness_iterations
+    INNER_ITERATIONS
+  end
+end
+
+iteration = 0
+
 while true
   input = harness_input
 
@@ -27,7 +38,12 @@ while true
 
   STDOUT.flush
 
-  unless ARGV.include? "--non-interactive"
+  if ARGV[0] == "--loop"
+    next
+  elsif ARGV[0] == "--loopn"
+    iteration += 1
+    break if iteration == ITERATIONS
+  else
     command = gets
     break unless command == "continue" || command == "continue\n"
   end
