@@ -34,12 +34,18 @@ module Bench
       IO.popen command, "r+" do |subprocess|
         while true
           line = subprocess.gets
-
           line.strip! unless line.nil?
 
           time = line.to_f
 
           if line.nil? || line == "error" || time == 0
+            until line.nil?
+              STDERR.puts line
+
+              line = subprocess.gets
+              line.strip! unless line.nil?
+            end
+
             return :failed
           end
 
