@@ -10,8 +10,9 @@ module Bench
 
   class Implementation
 
-    WARMUP_WINDOW_SIZE = 10
-    WARMED_UP_RELATIVE_RANGE = 0.2
+    BEFORE_WARMUP_TIME = 30
+    WARMUP_WINDOW_SIZE = 20
+    WARMED_UP_RELATIVE_RANGE = 0.1
     MAX_WARMUP = 100
     SAMPLES_COUNT = 10
 
@@ -30,6 +31,8 @@ module Bench
       warmup_window = []
       warmup_samples = []
       samples = []
+
+      overall_time = Time.now
 
       IO.popen command, "r+" do |subprocess|
         while true
@@ -51,7 +54,9 @@ module Bench
 
           puts time if flags.has_key? "--show-samples"
 
-          if warming_up
+          if Time.now - overall_time < BEFORE_WARMUP_TIME
+            subprocess.puts "continue"
+          elsif warming_up
             warmup_samples.push time
 
             warmup_window.shift if warmup_window.size == WARMUP_WINDOW_SIZE
