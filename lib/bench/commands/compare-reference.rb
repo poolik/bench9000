@@ -24,7 +24,7 @@ module Bench
           return
         end
 
-        puts "#{b} " + options.all_implementations.map { |i|
+        puts "#{b} " + options.implementations.map { |i|
           if reference_score == :failed
             if measurements[b, i] == :failed
               "reference and new failed"

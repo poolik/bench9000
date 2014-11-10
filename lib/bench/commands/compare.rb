@@ -12,7 +12,7 @@ module Bench
     class Compare < Command
 
       def before(options, existing_measurements)
-        if options.all_implementations.size < 2
+        if options.implementations.size < 2
           puts "you need at least two implementations to compare"
           exit
         end
@@ -20,7 +20,7 @@ module Bench
       end
 
       def benchmark_complete(options, b, measurements)
-        reference = measurements[b, options.all_implementations[0]]
+        reference = measurements[b, options.implementations[0]]
 
         if reference == :failed
           reference_info = "(reference failed) "
@@ -28,7 +28,7 @@ module Bench
           reference_info = ""
         end
 
-        puts "#{b} #{reference_info}" + options.all_implementations.drop(1).map { |i|
+        puts "#{b} #{reference_info}" + options.implementations.drop(1).map { |i|
           if reference == :failed
             measurements[b, i].score.to_s
           else

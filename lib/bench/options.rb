@@ -12,29 +12,17 @@ module Bench
 
     attr_reader :config
     attr_reader :implementations
-    attr_reader :implementation_groups
-    attr_reader :all_implementations
     attr_reader :benchmarks
-    attr_reader :benchmark_groups
-    attr_reader :all_benchmarks
     attr_reader :flags
 
     def initialize(
         config,
         implementations,
-        implementation_groups,
-        all_implementations,
         benchmarks,
-        benchmark_groups,
-        all_benchmarks,
         flags)
       @config = config
       @implementations = implementations
-      @implementation_groups = implementation_groups
-      @all_implementations = all_implementations
       @benchmarks = benchmarks
-      @benchmark_groups = benchmark_groups
-      @all_benchmarks = all_benchmarks
       @flags = flags
     end
 

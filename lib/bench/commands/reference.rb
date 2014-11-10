@@ -12,7 +12,7 @@ module Bench
     class Reference < Command
 
       def before(options, existing_measurements)
-        if options.all_implementations.size != 1
+        if options.implementations.size != 1
           puts "needs exactly one implementation"
           exit 1
         end

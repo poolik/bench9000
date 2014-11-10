@@ -27,7 +27,7 @@ module Bench
 
       def benchmark_complete(options, b, measurements)
         if options.flags.has_key? "--benchmark-per-line"
-          puts "#{b} " + options.all_implementations.map { |i|
+          puts "#{b} " + options.implementations.map { |i|
             measurement = measurements[b, i]
 
             if measurement == :failed

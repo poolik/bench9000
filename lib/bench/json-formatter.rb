@@ -13,8 +13,8 @@ module Bench
   module JSONFormatter
 
     def self.format(options, measurements)
-        benchmarks = options.all_benchmarks
-        implementations = options.all_implementations
+        benchmarks = options.benchmarks
+        implementations = options.implementations
 
         JSON.pretty_generate({
           benchmarks: benchmarks,

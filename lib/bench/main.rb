@@ -65,34 +65,44 @@ module Bench
       end
 
       implementations = []
-      implementation_groups = []
-      all_implementations = []
       benchmarks = []
-      benchmark_groups = []
-      all_benchmarks = []
 
       subjects.each do |s|
+        negated = s.start_with? "^"
+        s = s[1..-1] if negated
+
         if s == "all"
           config.benchmarks.values.each do |b|
             benchmarks.push b
-            all_benchmarks.push b
           end
         elsif config.implementations.has_key? s
           i = config.implementations[s]
-          implementations.push i
-          all_implementations.push i
+          if negated
+            implementations.delete i
+          else
+            implementations.push i
+          end
         elsif config.implementation_groups.has_key? s
           ig = config.implementation_groups[s]
-          implementation_groups.push ig
-          all_implementations.concat ig.members
+          if negated
+            implementations.delete_if { |i| ig.members.include? i }
+          else
+            implementations.concat ig.members
+          end
         elsif config.benchmarks.has_key? s
           b = config.benchmarks[s]
-          benchmarks.push b
-          all_benchmarks.push b
+          if negated
+            benchmarks.delete b
+          else
+            benchmarks.push b
+          end
         elsif config.benchmark_groups.has_key? s
           bg = config.benchmark_groups[s]
-          benchmark_groups.push bg
-          all_benchmarks.concat bg.members
+          if negated
+            benchmarks.delete_if { |b| bg.members.include? b }
+          else
+            benchmarks.concat bg.members
+          end
         else
           puts "unknown implementation or benchmark or group #{s}"
           exit
@@ -102,11 +112,7 @@ module Bench
       options = Options.new(
         config,
         implementations,
-        implementation_groups,
-        all_implementations,
         benchmarks,
-        benchmark_groups,
-        all_benchmarks,
         flags)
 
       start = Time.now
@@ -180,8 +186,8 @@ module Bench
 
         measurements = Measurements.new
 
-        options.all_benchmarks.each do |b|
-          options.all_implementations.each do |i|
+        options.benchmarks.each do |b|
+          options.implementations.each do |i|
             measurement = existing_measurements[b.name, i.name]
 
             if measurement.nil?

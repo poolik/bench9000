@@ -19,8 +19,8 @@ module Bench
           existing_measurements.measurements.each do |bi, measurement|
             b, i = bi
 
-            unless options.all_benchmarks.map(&:name).include?(b) ||
-                options.all_implementations.map(&:name).include?(i)
+            unless options.benchmarks.map(&:name).include?(b) ||
+                options.implementations.map(&:name).include?(i)
               if measurement == :failed
                 file.puts JSON.generate({benchmark: b, implementation: i, failed: true})
               else
