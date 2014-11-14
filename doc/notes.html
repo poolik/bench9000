@@ -12,9 +12,9 @@
 
 <h2>Experimental Setup</h2>
 
-<p>All experiments were run on a system with 2 Intel Xeon E5345 processors with 4 cores each at 2.33 GHz and 64 GB of RAM, running 64bit Ubuntu Linux 14.04. Where an unmodified Java VM was required, we used the 64bit JDK 1.8.0u5 with default settings. For JRuby+Truffle we used the Graal VM version 0.5.</p>
+<p>All experiments were run on an otherwise unloaded server system with 2 Intel Xeon E5345 processors with 4 cores each at 2.33 GHz and 64 GB of RAM, running 64bit Ubuntu Linux 14.04. Where an unmodified Java VM was required, we used the 64bit JDK 1.8.0u5 with default settings. For JRuby+Truffle we used the Graal VM version 0.6.</p>
 
-<p>Development versions of Ruby implementations were as available at the date of generation of the report. We use the <code>truffle-head<code> branch of JRuby and use the latest version of Graal.</p>
+<p>Development versions of Ruby implementations were as available at the date of generation of the report. We use the <code>truffle-head</code> branch of JRuby and use the latest version of Graal.</p>
 
 <p>The command used to generated this report was:</p>
 
@@ -22,21 +22,21 @@
   report --baseline 2.1.4 --notes doc/notes.html \
   1.8.7-p375 1.9.3-p550 2.0.0-p594 2.1.4 jruby-1.7.16-int jruby-1.7.16-noindy \
   jruby-1.7.16-indy rbx-2.2.10-int rbx-2.2.10 topaz-dev jruby-9000-dev-int \
-  jruby-9000-dev-truffle-nograal jruby-9000-dev-truffle-graal all</pre>
+  jruby-9000-dev-truffle-nograal jruby-9000-dev-truffle-graal all ^classic-red-black</pre>
 
-<p>We don't run jruby-9000-dev-noindy or jruby-9000-dev-indy at the moment as the JIT is not quite complete yet.</p>
+<p>We don't run jruby-9000-dev-noindy or jruby-9000-dev-indy at the moment as the JIT is not quite complete yet. We don't run red-black as we've only just added it and haven't looked at how it's running yet.</p>
 
 <h2>Methodology</h2>
 
 <h3>Warmup</h3>
 
-<p>We consider an implementation to be warmed up when the last N samples have a range relative to the mean of less than E. When a run of N samples have a range less than that, they are considered to be the first N samples where the implementation is warmed up.</p>
+<p>We consider an implementation to be warmed up when the last N samples have a range relative to the mean of less than E. When a run of N samples have a range less than that, they are considered to be the first N samples where the implementation is warmed up. We also run for at least W seconds before considering warmup.</p>
 
 <p>We then take S samples (starting with the last N that passed our warmup test) for our measurements.</p>
 
 <p>If you are going to publish results based on these benchmarks, you should manually verify warmup using lag or autocorrelation plots.</p>
 
-<p>We have chosen N to be 10, E to be 0.2 and S to be 10. These are arbitrary, but by comparing with the lag plots of our data they do seem to do the right thing in the majority of cases. Some benchmarks do not warm up, in which case we run up to 100 warmup iterations.</p>
+<p>We have chosen W to be 30, N to be 20, E to be 0.1 and S to be 10. These are arbitrary, but by comparing with the lag plots of our data they do seem to do the right thing in the majority of cases. Some benchmarks do not warm up, in which case we run up to 100 warmup iterations.</p>
 
 <p>Where we summarise across benchmarks we report a <a href="http://ece.uprm.edu/~nayda/Courses/Icom5047F06/Papers/paper4.pdf">geometric mean</a>.</p>
 
