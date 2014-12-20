@@ -16,12 +16,12 @@ Detailed notes on the methodology we have used can be found in the final section
 
 To get an abstract score that represents performance with higher is better:
 
-    bench score 2.1.4 shootout
+    bench score 2.1.5 shootout
 
 <!-- -->
 
-    shootout-mandelbrot 2.1.4 2000
-    shootout-nbody 2.1.4 2000
+    shootout-mandelbrot 2.1.5 2000
+    shootout-nbody 2.1.5 2000
     ...
 
 The score is `1 / time * arbitrary constant`, with the arbitrary constant so that JRuby on a typical system achieves around the order of 1000.
@@ -36,21 +36,21 @@ There are several formats which you can print detailed information in. In all fo
 
 `--value-per-line` lists each value on its own line with keys, perhaps for reading by another program:
 
-    bench detail 2.1.4 rbx-2.2.10 shootout --value-per-line
+    bench detail 2.1.5 rbx-2.4.1 shootout --value-per-line
 
 <!-- -->
 
-    shootout-mandelbrot 2.1.4 warmup 20
-    shootout-mandelbrot 2.1.4 sample 10
-    shootout-mandelbrot 2.1.4 score 2000
-    shootout-mandelbrot rbx-2.2.10 warmup 20
-    shootout-mandelbrot rbx-2.2.10 sample 10
-    shootout-mandelbrot rbx-2.2.10 score 2000
+    shootout-mandelbrot 2.1.5 warmup 20
+    shootout-mandelbrot 2.1.5 sample 10
+    shootout-mandelbrot 2.1.5 score 2000
+    shootout-mandelbrot rbx-2.4.1 warmup 20
+    shootout-mandelbrot rbx-2.4.1 sample 10
+    shootout-mandelbrot rbx-2.4.1 score 2000
     ...
 
 `--benchmark-per-line` lists one benchmark per line, with clusters of values for each implementation and no keys, perhaps for pasting into a spreadsheet:
 
-    bench detail 2.1.4 rbx-2.2.10 shootout --benchmark-per-line
+    bench detail 2.1.5 rbx-2.4.1 shootout --benchmark-per-line
 
 <!-- -->
 
@@ -59,7 +59,7 @@ There are several formats which you can print detailed information in. In all fo
 
 `--json` outputs all the data in JSON:
 
-    bench detail 2.1.4 rbx-2.2.10 shootout --json
+    bench detail 2.1.5 rbx-2.4.1 shootout --json
 
 <!-- -->
 
@@ -86,7 +86,7 @@ There are several formats which you can print detailed information in. In all fo
 
 The performance of two or more implementations can be compared against the first:
 
-    bench compare 2.1.4 rbx-2.2.10 jruby-1.7.16 shootout
+    bench compare 2.1.5 rbx-2.4.1 jruby-1.7.17 shootout
 
 <!-- -->
 
@@ -100,7 +100,7 @@ The percentage shows performance of each implementation beyond the first, relati
 
 Set a reference point with some Ruby:
 
-    bench compare-reference 2.1.4 shootout
+    bench compare-reference 2.1.5 shootout
 
 <!-- -->
 
@@ -112,7 +112,7 @@ This writes data to `reference.txt`.
 
 You can then compare against this reference point multiple times:
 
-    bench compare-reference jruby-1.7.16-noindy jruby-1.7.16-indy
+    bench compare-reference jruby-1.7.17-noindy jruby-1.7.17-indy
 
 <!-- -->
 
@@ -126,7 +126,7 @@ This reads data from `reference.txt`.
 
 To generate a detailed interactive report with charts and tables:
 
-    bench report 2.1.4 rbx-2.2.10 shootout
+    bench report 2.1.5 rbx-2.4.1 shootout
 
 The output will go into report.html. You can set `--baseline implementation` to configure which implementation to use as the default baseline. You can set `--notes notes.html` to include extra content in the notes tab.
 
@@ -136,13 +136,13 @@ All commands accept a `--data` flag. If this is set measurements will be read fr
 
 You can use this with your commands as normal:
 
-    bench report 2.1.4 rbx-2.2.10 shootout --data data.txt
+    bench report 2.1.5 rbx-2.4.1 shootout --data data.txt
 
 This allows you to interrupt and resume measurements, and to keep measurements from one report to use in another, such as implementations that have not changed.
 
 The `remove` command allows measurements to be removed from the file. Here the listed implementations and benchmarks are those to remove, rather than those to measure:
 
-    bench remove 2.1.4 --data data.txt
+    bench remove 2.1.5 --data data.txt
 
 A common use of this is to keep a file with measurements from implementations that are stable, and to remove development implementations to re-measure after changes.
 
@@ -162,14 +162,15 @@ Configuration files specify the available Ruby implementations, benchmarks and b
 The default configuration includes common Ruby implementations which are expected to be found in `rbenv`.
 
 * `1.8.7-p375`
-* `1.9.3-p550`
-* `2.0.0-p594`
-* `2.1.4`
-* `jruby-1.7.16-int`
-* `jruby-1.7.16-noindy`
-* `jruby-1.7.16-indy`
-* `rbx-2.2.10-int`
-* `rbx-2.2.10`
+* `1.9.3-p551`
+* `2.0.0-p598`
+* `2.1.5`
+* `2.2.0-rc1`
+* `jruby-1.7.17-int`
+* `jruby-1.7.17-noindy`
+* `jruby-1.7.17-indy`
+* `rbx-2.4.1-int`
+* `rbx-2.4.1`
 * `topaz-dev`
 
 Development versions of implementations are enabled if you set environment variables to find them. You should have a built version of the implementation in this path, which should be the root directory of the repository.
