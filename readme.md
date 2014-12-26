@@ -86,7 +86,7 @@ There are several formats which you can print detailed information in. In all fo
 
 The performance of two or more implementations can be compared against the first:
 
-    bench compare 2.1.5 rbx-2.4.1 jruby-1.7.17 shootout
+    bench compare 2.1.5 rbx-2.4.1 jruby-1.7.18 shootout
 
 <!-- -->
 
@@ -112,7 +112,7 @@ This writes data to `reference.txt`.
 
 You can then compare against this reference point multiple times:
 
-    bench compare-reference jruby-1.7.17-noindy jruby-1.7.17-indy
+    bench compare-reference jruby-1.7.18-noindy jruby-1.7.18-indy
 
 <!-- -->
 
@@ -165,10 +165,10 @@ The default configuration includes common Ruby implementations which are expecte
 * `1.9.3-p551`
 * `2.0.0-p598`
 * `2.1.5`
-* `2.2.0-rc1`
-* `jruby-1.7.17-int`
-* `jruby-1.7.17-noindy`
-* `jruby-1.7.17-indy`
+* `2.2.0`
+* `jruby-1.7.18-int`
+* `jruby-1.7.18-noindy`
+* `jruby-1.7.18-indy`
 * `rbx-2.4.1-int`
 * `rbx-2.4.1`
 * `topaz-dev`
