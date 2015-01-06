@@ -13,7 +13,7 @@ require "psd/color"
 require "psd/util"
 require "psd/image_modes/greyscale"
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   require "oily_png/oily_png"
   require "psd_native/psd_native"
 end
@@ -26,7 +26,7 @@ CHANNEL_DATA = [128] * WIDTH * HEIGHT * 2
 class MockImage
   include PSD::ImageMode::Greyscale
 
-  if defined? NATIVE
+  if ENV.include? 'BENCH_9000_NATIVE'
     include PSDNative::ImageMode::Greyscale
   end
 

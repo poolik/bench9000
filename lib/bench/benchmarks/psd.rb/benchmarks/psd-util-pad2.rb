@@ -8,7 +8,7 @@
 
 require "mock-logger"
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   require "oily_png/oily_png"
   require "psd_native/psd_native"
 else
@@ -16,7 +16,7 @@ else
 end
 
 module MockUtil
-  if defined? NATIVE
+  if ENV.include? 'BENCH_9000_NATIVE'
     extend PSDNative::Util
   else
     extend PSD::Util

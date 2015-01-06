@@ -10,7 +10,7 @@ require "mock-logger"
 
 require "psd/renderer/compose"
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   require "oily_png/oily_png"
   require "psd_native/psd_native"
 else
@@ -26,7 +26,7 @@ def micro_harness_iterations
   1_000_000
 end
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   def micro_harness_sample(value)
     PSDNative::Compose::multiply(value, value, PSD::Compose::DEFAULT_OPTS)
   end

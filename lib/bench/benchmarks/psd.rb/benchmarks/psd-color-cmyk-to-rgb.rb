@@ -8,7 +8,7 @@
 
 require "mock-logger"
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   require "oily_png/oily_png"
   require "psd_native/psd_native"
 else
@@ -16,7 +16,7 @@ else
   require "psd/util"
 end
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   def cmyk_to_rgb(c, m, y, k)
     PSDNative::Color::cmyk_to_rgb(c, m, y, k)
   end

@@ -13,7 +13,7 @@ require "chunky_png/color"
 require "psd/color"
 require "psd/util"
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   require "oily_png/oily_png"
   require "psd_native/psd_native"
 end
@@ -96,7 +96,7 @@ class MockMask
 end
 
 class MockClippingMask < PSD::Renderer::ClippingMask
-  if defined? NATIVE
+  if ENV.include? 'BENCH_9000_NATIVE'
     include PSDNative::Renderer::ClippingMask
   end
 

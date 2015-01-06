@@ -14,7 +14,7 @@ end
 
 require "chunky_png"
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   require "oily_png/oily_png"
 else
   require "chunky_png"
@@ -28,7 +28,7 @@ PIXEL = 0x12345678
 
 class MockCanvas
   extend ChunkyPNG::Canvas::PNGDecoding
-  if defined? NATIVE
+  if ENV.include? 'BENCH_9000_NATIVE'
     extend OilyPNG::PNGDecoding
   else
     extend ChunkyPNG::Canvas::PNGDecoding

@@ -17,7 +17,7 @@ require "psd/renderer/blender"
 # Constant lookup not quite right in blender.rb - this fixes it
 Compose = PSD::Compose
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   require "oily_png/oily_png"
   require "psd_native/psd_native"
 end
@@ -76,13 +76,13 @@ class MockCanvas
   attr_reader :node
 end
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   class PSD::Renderer::Blender
   end
 end
 
 class MockBlender < PSD::Renderer::Blender
-  if defined? NATIVE
+  if ENV.include? 'BENCH_9000_NATIVE'
     include PSDNative::Renderer::Blender
   end
 

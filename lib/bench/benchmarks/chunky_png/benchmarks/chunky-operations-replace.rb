@@ -6,7 +6,7 @@
 # GNU General Public License version 2
 # GNU Lesser General Public License version 2.1
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   require "oily_png/oily_png"
 else
   require "chunky_png"
@@ -15,7 +15,7 @@ end
 PIXEL = 0x12345678
 
 class MockCanvas
-  if defined? NATIVE
+  if ENV.include? 'BENCH_9000_NATIVE'
     include OilyPNG::Operations
   else
     include ChunkyPNG::Canvas::Operations

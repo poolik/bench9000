@@ -13,7 +13,7 @@ require "psd/color"
 require "psd/util"
 require "psd/image_modes/rgb"
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   require "oily_png/oily_png"
   require "psd_native/psd_native"
 end
@@ -26,7 +26,7 @@ CHANNEL_DATA = [128] * WIDTH * HEIGHT * 4
 class MockImage
   include PSD::ImageMode::RGB
 
-  if defined? NATIVE
+  if ENV.include? 'BENCH_9000_NATIVE'
     include PSDNative::ImageMode::RGB
   end
 

@@ -16,7 +16,7 @@ require "chunky_png"
 
 Color = ChunkyPNG::Color
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   require "oily_png/oily_png"
 end
 
@@ -33,7 +33,7 @@ class MockCanvas
   # I can't seem to lookup this constant correctly
   #Color = ChunkyPNG::Color
 
-  if defined? NATIVE
+  if ENV.include? 'BENCH_9000_NATIVE'
     include OilyPNG::PNGEncoding
   else
     include ChunkyPNG::Canvas::PNGEncoding

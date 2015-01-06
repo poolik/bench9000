@@ -10,7 +10,7 @@ require "mock-logger"
 
 require "psd/renderer/mask"
 
-if defined? NATIVE
+if ENV.include? 'BENCH_9000_NATIVE'
   require "oily_png/oily_png"
   require "psd_native/psd_native"
 else
@@ -102,7 +102,7 @@ class MockCanvas
 end
 
 class MockMask < PSD::Renderer::Mask
-  if defined? NATIVE
+  if ENV.include? 'BENCH_9000_NATIVE'
     include PSDNative::Renderer::Mask
   end
 
