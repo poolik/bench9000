@@ -55,6 +55,8 @@ module Bench
         end
 
         File.open("report.html", "w").write(report)
+
+        puts "Total benchmarking time: #{(measurements.total_time/60).round}m"
       end
 
       def read(file)

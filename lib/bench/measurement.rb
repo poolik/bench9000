@@ -36,6 +36,10 @@ module Bench
       1 / sample * 1000
     end
 
+    def total_time
+      Stats.sum(warmup_samples + samples)
+    end
+
   end
 
   class Measurements
@@ -54,6 +58,16 @@ module Bench
 
     def measurements
       @hash
+    end
+
+    def total_time
+      Stats.sum(measurements.values.map { |m|
+        if m == :failed
+          0
+        else
+          m.total_time
+        end
+      })
     end
 
   end
