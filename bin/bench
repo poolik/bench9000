@@ -8,6 +8,6 @@
 # GNU General Public License version 2
 # GNU Lesser General Public License version 2.1
 
-require 'bench'
+require_relative '../lib/bench'
 
 Bench::Main.main(ARGV)
