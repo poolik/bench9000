@@ -18,14 +18,25 @@ if ARGV[0] == "--loopn"
   end
 end
 
+begin
+  Process.clock_gettime(Process::CLOCK_MONOTONIC) # test
+  def bench9000_get_time
+    Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  end
+rescue Exception
+  def bench9000_get_time
+    Time.now
+  end
+end
+
 iteration = 0
 
 while true
   input = harness_input
 
-  start = Time.now
+  start = bench9000_get_time
   actual_output = harness_sample(input)
-  time = Time.now - start
+  time = bench9000_get_time - start
 
   unless harness_verify(actual_output)
     puts "error"
