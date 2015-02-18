@@ -39,6 +39,11 @@ module Bench
           line = subprocess.gets
           line.strip! unless line.nil?
 
+          if line.start_with? '[truffle]'
+            STDERR.puts line
+            next
+          end
+
           time = line.to_f
 
           if line.nil? || line == "error" || time == 0
