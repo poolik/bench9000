@@ -67,6 +67,8 @@ module Bench
             when "--json"
               flags[arg] = true
             when "--env"
+              args.shift
+              args.shift
             else
               puts "unknown option #{arg}"
               exit
