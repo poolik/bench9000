@@ -13,6 +13,21 @@ module Bench
   module Main
 
     def self.main(args)
+      pre_args = args.dup
+
+      until pre_args.empty?
+        arg = pre_args.shift
+
+        if arg.start_with? "--"
+          case arg
+            when "--env"
+              key = pre_args.shift
+              value = pre_args.shift
+              ENV[key] = value
+          end
+        end
+      end
+
       config = Config.new
       config.load File.join(File.dirname(__FILE__), "default.config")
 
@@ -52,12 +67,6 @@ module Bench
             when "--json"
               flags[arg] = true
             when "--env"
-              key = args.shift
-              value = args.shift
-              p ENV.to_a
-              p [key, value]
-              ENV[key] = value
-              p ENV.to_a
             else
               puts "unknown option #{arg}"
               exit
