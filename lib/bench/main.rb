@@ -52,7 +52,9 @@ module Bench
             when "--json"
               flags[arg] = true
             when "--env"
-              ENV[args.shift] = args.shift
+              key = args.shift
+              value = args.shift
+              ENV[key] = value
             else
               puts "unknown option #{arg}"
               exit
