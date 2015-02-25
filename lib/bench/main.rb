@@ -54,7 +54,10 @@ module Bench
             when "--env"
               key = args.shift
               value = args.shift
+              p ENV.to_a
+              p [key, value]
               ENV[key] = value
+              p ENV.to_a
             else
               puts "unknown option #{arg}"
               exit
