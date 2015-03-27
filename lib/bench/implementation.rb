@@ -60,6 +60,8 @@ module Bench
           puts time if flags.has_key? "--show-samples"
 
           if Time.now - overall_time < BEFORE_WARMUP_TIME
+            warmup_samples.push time
+            
             subprocess.puts "continue"
           elsif warming_up
             warmup_samples.push time
