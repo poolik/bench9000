@@ -41,7 +41,7 @@ module Bench
 
       def after(options, measurements)
         if options.flags.has_key? "--json"
-          puts JSON.pretty_generate(JSONFormatter.format(options, measurements))
+          puts JSONFormatter.format(options, measurements)
         end
       end
 
