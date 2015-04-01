@@ -1,4 +1,4 @@
-all_benchamrk_tasks = []
+all_benchmark_tasks = []
 
 namespace(:benchmark) do
   
@@ -11,14 +11,14 @@ namespace(:benchmark) do
       load(File.expand_path(benchmark_file))
     end
     
-    all_benchamrk_tasks << "benchmark:#{task_name}"
+    all_benchmark_tasks << "benchmark:#{task_name}"
   end
 end
 
-unless all_benchamrk_tasks.empty?
+unless all_benchmark_tasks.empty?
   desc 'Run the whole benchmark suite'
   task(:benchmark, :n) do |task, args|
-    all_benchamrk_tasks.each do |t| 
+    all_benchmark_tasks.each do |t|
       task(t).invoke(args[:n])
       puts
     end
