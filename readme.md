@@ -200,7 +200,7 @@ You can add your own benchmarks by writing your own config file.
 
 ### Warmup
 
-We consider an implementation to be warmed up when the last N samples have a range relative to the mean of less than E. When a run of N samples have a range less than that, they are considered to be the first N samples where the implementation is warmed up. If the benchmark does not reach this state within W samples, we give the user a warning and will start measuring samples anyway.
+We consider an implementation to be warmed up when the last N samples have a range relative to the mean of less than E. When a run of N samples have a range less than that, they are considered to be the first N samples where the implementation is warmed up. If the benchmark does not reach this state within W samples, we give the user a warning and will start measuring samples anyway. Some benchmarks just don't warm up, or don't warm up in reasonable time. It's fine to ignore this warning in normal usage.
 
 We then take S samples (starting with the last N that passed our warmup test) for our measurements.
 
