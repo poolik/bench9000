@@ -182,11 +182,6 @@ Development versions of implementations are enabled if you set environment varia
 
 You can add your own implementations by writing your own config file, or use the `custom` implementation by setting `RUBY_BIN` and `RUBY_ARGS`.
 
-## Implementation Groups
-
-* `interpreters` all interpreters (except legacy versions of MRI)
-* `jits` all JIT compilers
-
 ## Benchmarks
 
 ### Shootout
