@@ -36,21 +36,21 @@ There are several formats which you can print detailed information in. In all fo
 
 `--value-per-line` lists each value on its own line with keys, perhaps for reading by another program:
 
-    bench detail 2.2.2 rbx-2.5.2 shootout --value-per-line
+    bench detail 2.2.2 rbx-2.5.5 shootout --value-per-line
 
 <!-- -->
 
     shootout-mandelbrot 2.2.2 warmup 20
     shootout-mandelbrot 2.2.2 sample 10
     shootout-mandelbrot 2.2.2 score 2000
-    shootout-mandelbrot rbx-2.5.2 warmup 20
-    shootout-mandelbrot rbx-2.5.2 sample 10
-    shootout-mandelbrot rbx-2.5.2 score 2000
+    shootout-mandelbrot rbx-2.5.5 warmup 20
+    shootout-mandelbrot rbx-2.5.5 sample 10
+    shootout-mandelbrot rbx-2.5.5 score 2000
     ...
 
 `--benchmark-per-line` lists one benchmark per line, with clusters of values for each implementation and no keys, perhaps for pasting into a spreadsheet:
 
-    bench detail 2.2.2 rbx-2.5.2 shootout --benchmark-per-line
+    bench detail 2.2.2 rbx-2.5.5 shootout --benchmark-per-line
 
 <!-- -->
 
@@ -59,7 +59,7 @@ There are several formats which you can print detailed information in. In all fo
 
 `--json` outputs all the data in JSON:
 
-    bench detail 2.2.2 rbx-2.5.2 shootout --json
+    bench detail 2.2.2 rbx-2.5.5 shootout --json
 
 <!-- -->
 
@@ -86,7 +86,7 @@ There are several formats which you can print detailed information in. In all fo
 
 The performance of two or more implementations can be compared against the first:
 
-    bench compare 2.2.2 rbx-2.5.2 jruby-1.7.18 shootout
+    bench compare 2.2.2 rbx-2.5.5 jruby-1.7.18 shootout
 
 <!-- -->
 
@@ -126,7 +126,7 @@ This reads data from `reference.txt`.
 
 To generate a detailed interactive report with charts and tables:
 
-    bench report 2.2.2 rbx-2.5.2 shootout
+    bench report 2.2.2 rbx-2.5.5 shootout
 
 The output will go into report.html. You can set `--baseline implementation` to configure which implementation to use as the default baseline. You can set `--notes notes.html` to include extra content in the notes tab.
 
@@ -136,7 +136,7 @@ All commands accept a `--data` flag. If this is set measurements will be read fr
 
 You can use this with your commands as normal:
 
-    bench report 2.2.2 rbx-2.5.2 shootout --data data.txt
+    bench report 2.2.2 rbx-2.5.5 shootout --data data.txt
 
 This allows you to interrupt and resume measurements, and to keep measurements from one report to use in another, such as implementations that have not changed.
 
@@ -166,11 +166,11 @@ The default configuration includes common Ruby implementations which are expecte
 * `2.0.0-p645`
 * `2.1.6`
 * `2.2.2`
-* `jruby-1.7.19-int`
-* `jruby-1.7.19-noindy`
-* `jruby-1.7.19-indy`
-* `rbx-2.5.2-int`
-* `rbx-2.5.2`
+* `jruby-1.7.20-int`
+* `jruby-1.7.20-noindy`
+* `jruby-1.7.20-indy`
+* `rbx-2.5.5-int`
+* `rbx-2.5.5`
 * `topaz-dev`
 
 Development versions of implementations are enabled if you set environment variables to find them. You should have a built version of the implementation in this path, which should be the root directory of the repository.
