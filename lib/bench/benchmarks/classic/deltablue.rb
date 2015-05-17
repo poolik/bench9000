@@ -601,7 +601,8 @@ def chain_test(n)
 
     # We need to go up to n inclusively.
     for i in 0..n
-        name = "v%s" % i
+        #name = "v%s" % i
+        name = sprintf "v%s", i
         v = Variable.new(name)
 
         unless prev.nil?
@@ -650,8 +651,10 @@ def projection_test(n)
     dests = []
 
     for i in 0..(n - 1)
-        src = Variable.new("src%s" % i, i)
-        dst = Variable.new("dst%s" % i, i)
+        #src = Variable.new("src%s" % i, i)
+        src = Variable.new(sprintf("src%s", i), i)
+        #dst = Variable.new("dst%s" % i, i)
+        dst = Variable.new(sprintf("dst%s", i), i)
         dests << dst
         StayConstraint.new(src, Strength::NORMAL)
         ScaleConstraint.new(src, scale, offset, dst, Strength::REQUIRED)
