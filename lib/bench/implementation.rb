@@ -37,26 +37,17 @@ module Bench
       IO.popen command, "r+" do |subprocess|
         while true
           line = subprocess.gets
-          line.strip! unless line.nil?
+          
+          if line.nil? || line == "error"
+            return :failed
+          end
 
-          if !line.nil? && line.start_with?('[truffle]')
+          unless line.match(/\d+\.\d+/)
             STDERR.puts line
             next
           end
 
           time = line.to_f
-
-          if line.nil? || line == "error" || time == 0
-            until line.nil?
-              STDERR.puts line
-
-              line = subprocess.gets
-              line.strip! unless line.nil?
-            end
-
-            return :failed
-          end
-
           puts time if flags.has_key? "--show-samples"
 
           if Time.now - overall_time < BEFORE_WARMUP_TIME
