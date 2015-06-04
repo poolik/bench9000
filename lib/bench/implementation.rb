@@ -14,6 +14,7 @@ module Bench
     WARMUP_WINDOW_SIZE = 20
     WARMED_UP_RELATIVE_RANGE = 0.1
     MAX_WARMUP = 100
+    MAX_WARMUP_TIME = 4 * 60
     SAMPLES_COUNT = 10
 
     attr_reader :name
@@ -50,7 +51,9 @@ module Bench
           time = line.to_f
           puts time if flags.has_key? "--show-samples"
 
-          if Time.now - overall_time < BEFORE_WARMUP_TIME
+          elapsed_time = Time.now - overall_time
+
+          if elapsed_time < BEFORE_WARMUP_TIME
             warmup_samples.push time
             
             subprocess.puts "continue"
@@ -65,7 +68,7 @@ module Bench
               warming_up = false
               warmup_samples = warmup_samples.reverse.drop(WARMUP_WINDOW_SIZE).reverse
               samples = warmup_window
-            elsif warmup_samples.size > MAX_WARMUP
+            elsif warmup_samples.size > MAX_WARMUP || elapsed_time > MAX_WARMUP_TIME
               puts "warning: #{@name} #{benchmark} never warmed up!"
               warming_up = false
             end
