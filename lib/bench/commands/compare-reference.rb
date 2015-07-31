@@ -31,6 +31,8 @@ module Bench
             else
               "reference failed: new score: #{measurements[b, i].score}"
             end
+          elsif measurements[b, i] == :failed
+            "new failed: reference score: #{reference_score}"
           else
             Stats.format_percent(measurements[b, i].score / reference_score)
           end
