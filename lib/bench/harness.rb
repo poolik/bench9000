@@ -47,7 +47,14 @@ while true
 
   # Some implementations of Ruby will not flush each line when writing to a pipe
 
-  STDOUT.flush
+  begin
+    STDOUT.flush
+  rescue Errno::EPIPE
+    # Not the cleanest solution, but if the previous `puts` call reaches the parent and the parent exits before the
+    # `flush` call is encountered, we may end up writing to a closed pipe.  If the parent has closed, there's not much
+    # can do, so we'll just exit and hope for the best.
+    break
+  end
 
   if ARGV[0] == "--loop"
     next
