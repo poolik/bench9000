@@ -16,12 +16,12 @@ Detailed notes on the methodology we have used can be found in the final section
 
 To get an abstract score that represents performance with higher is better:
 
-    bench score 2.2.2 shootout
+    bench score 2.2.2 classic
 
 <!-- -->
 
-    shootout-mandelbrot 2.2.2 2000
-    shootout-nbody 2.2.2 2000
+    classic-mandelbrot 2.2.2 2000
+    classic-nbody 2.2.2 2000
     ...
 
 The score is `1 / time * arbitrary constant`, with the arbitrary constant so that JRuby on a typical system achieves around the order of 1000.
@@ -36,30 +36,30 @@ There are several formats which you can print detailed information in. In all fo
 
 `--value-per-line` lists each value on its own line with keys, perhaps for reading by another program:
 
-    bench detail 2.2.2 rbx-2.5.5 shootout --value-per-line
+    bench detail 2.2.2 rbx-2.5.5 classic --value-per-line
 
 <!-- -->
 
-    shootout-mandelbrot 2.2.2 warmup 20
-    shootout-mandelbrot 2.2.2 sample 10
-    shootout-mandelbrot 2.2.2 score 2000
-    shootout-mandelbrot rbx-2.5.5 warmup 20
-    shootout-mandelbrot rbx-2.5.5 sample 10
-    shootout-mandelbrot rbx-2.5.5 score 2000
+    classic-mandelbrot 2.2.2 warmup 20
+    classic-mandelbrot 2.2.2 sample 10
+    classic-mandelbrot 2.2.2 score 2000
+    classic-mandelbrot rbx-2.5.5 warmup 20
+    classic-mandelbrot rbx-2.5.5 sample 10
+    classic-mandelbrot rbx-2.5.5 score 2000
     ...
 
 `--benchmark-per-line` lists one benchmark per line, with clusters of values for each implementation and no keys, perhaps for pasting into a spreadsheet:
 
-    bench detail 2.2.2 rbx-2.5.5 shootout --benchmark-per-line
+    bench detail 2.2.2 rbx-2.5.5 classic --benchmark-per-line
 
 <!-- -->
 
-    shootout-mandelbrot 20 10 2000 20 10 2000
+    classic-mandelbrot 20 10 2000 20 10 2000
     ...
 
 `--json` outputs all the data in JSON:
 
-    bench detail 2.2.2 rbx-2.5.5 shootout --json
+    bench detail 2.2.2 rbx-2.5.5 classic --json
 
 <!-- -->
 
@@ -86,12 +86,12 @@ There are several formats which you can print detailed information in. In all fo
 
 The performance of two or more implementations can be compared against the first:
 
-    bench compare 2.2.2 rbx-2.5.5 jruby-1.7.18 shootout
+    bench compare 2.2.2 rbx-2.5.5 jruby-1.7.18 classic
 
 <!-- -->
 
-    shootout-mandelbrot 150% 200%
-    shootout-nbody 150% 200%
+    classic-mandelbrot 150% 200%
+    classic-nbody 150% 200%
     ...
 
 The percentage shows performance of each implementation beyond the first, relative to the first.
@@ -100,12 +100,12 @@ The percentage shows performance of each implementation beyond the first, relati
 
 Set a reference point with some Ruby:
 
-    bench compare-reference 2.2.2 shootout
+    bench compare-reference 2.2.2 classic
 
 <!-- -->
 
-    shootout-mandelbrot 2000
-    shootout-nbody 2000
+    classic-mandelbrot 2000
+    classic-nbody 2000
     ...
 
 This writes data to `reference.txt`.
@@ -116,8 +116,8 @@ You can then compare against this reference point multiple times:
 
 <!-- -->
 
-    shootout-mandelbrot 150% 200%
-    shootout-nbody 150% 200%
+    classic-mandelbrot 150% 200%
+    classic-nbody 150% 200%
     ...
 
 This reads data from `reference.txt`.
@@ -126,7 +126,7 @@ This reads data from `reference.txt`.
 
 To generate a detailed interactive report with charts and tables:
 
-    bench report 2.2.2 rbx-2.5.5 shootout
+    bench report 2.2.2 rbx-2.5.5 classic
 
 The output will go into report.html. You can set `--baseline implementation` to configure which implementation to use as the default baseline. You can set `--notes notes.html` to include extra content in the notes tab.
 
@@ -136,7 +136,7 @@ All commands accept a `--data` flag. If this is set measurements will be read fr
 
 You can use this with your commands as normal:
 
-    bench report 2.2.2 rbx-2.5.5 shootout --data data.txt
+    bench report 2.2.2 rbx-2.5.5 classic --data data.txt
 
 This allows you to interrupt and resume measurements, and to keep measurements from one report to use in another, such as implementations that have not changed.
 
@@ -181,20 +181,6 @@ Development versions of implementations are enabled if you set environment varia
 * `jruby-9000-dev-truffle-graal` - set `JRUBY_9000_DEV_DIR` and `GRAAL_BIN`
 
 You can add your own implementations by writing your own config file, or use the `custom` implementation by setting `RUBY_BIN` and `RUBY_ARGS`.
-
-## Benchmarks
-
-### Shootout
-
-* `shootout-mandelbrot`
-* `shootout-nbody`
-
-You can add your own benchmarks by writing your own config file.
-
-## Benchmark Groups
-
-* `all` all benchmarks
-* `shootout` all shootout benchmarks
 
 ## Methodology
 
