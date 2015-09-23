@@ -22,7 +22,7 @@ class MockCanvas
   public :resample_nearest_neighbor!
 
   def initialize
-    @pixels = Array.new(width * height)
+    @pixels = Array.new(width * height, 0)
 
     @pixels.size.times do |n|
       @pixels[n] = 0x12345678
