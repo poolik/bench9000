@@ -13,6 +13,7 @@ else
 end
 
 PIXEL = 0x12345678
+INITIAL_VALUE = 2 ** 62 # Arbitrary long int value.
 
 class MockCanvas
   if ENV.include? 'BENCH_9000_NATIVE'
@@ -24,7 +25,7 @@ class MockCanvas
   public :compose!
 
   def initialize
-    @pixels = Array.new(width * height, 0)
+    @pixels = Array.new(width * height, INITIAL_VALUE)
 
     @pixels.size.times do |n|
       @pixels[n] = PIXEL
