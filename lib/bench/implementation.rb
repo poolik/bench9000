@@ -103,6 +103,8 @@ module Bench
 
   class RbenvImplementation < Implementation
 
+    RBENV_ROOT = `rbenv root`.chop
+
     def initialize(name, version, flags)
       @name = name
       @version = version
@@ -110,7 +112,7 @@ module Bench
     end
 
     def command(benchmark)
-      "~/.rbenv/versions/#{@version}/bin/ruby #{@flags} -I#{HARNESS_DIR} #{benchmark.flags} #{benchmark.file}"
+      "#{RBENV_ROOT}/versions/#{@version}/bin/ruby #{@flags} -I#{HARNESS_DIR} #{benchmark.flags} #{benchmark.file}"
     end
 
   end
