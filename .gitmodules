@@ -1,0 +1,3 @@
+[submodule "lib/bench/benchmarks/future/concurrent-ruby"]
+	path = lib/bench/benchmarks/future/concurrent-ruby
+	url = git@github.com:ruby-concurrency/concurrent-ruby.git
