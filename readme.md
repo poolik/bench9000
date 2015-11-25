@@ -16,7 +16,7 @@ Detailed notes on the methodology we have used can be found in the final section
 
 To get an abstract score that represents performance with higher is better:
 
-    bench score 2.2.3 classic
+    bench9000 score 2.2.3 classic
 
 <!-- -->
 
@@ -36,7 +36,7 @@ There are several formats which you can print detailed information in. In all fo
 
 `--value-per-line` lists each value on its own line with keys, perhaps for reading by another program:
 
-    bench detail 2.2.3 rbx-2.5.8 classic --value-per-line
+    bench9000 detail 2.2.3 rbx-2.5.8 classic --value-per-line
 
 <!-- -->
 
@@ -50,7 +50,7 @@ There are several formats which you can print detailed information in. In all fo
 
 `--benchmark-per-line` lists one benchmark per line, with clusters of values for each implementation and no keys, perhaps for pasting into a spreadsheet:
 
-    bench detail 2.2.3 rbx-2.5.8 classic --benchmark-per-line
+    bench9000 detail 2.2.3 rbx-2.5.8 classic --benchmark-per-line
 
 <!-- -->
 
@@ -59,7 +59,7 @@ There are several formats which you can print detailed information in. In all fo
 
 `--json` outputs all the data in JSON:
 
-    bench detail 2.2.3 rbx-2.5.8 classic --json
+    bench9000 detail 2.2.3 rbx-2.5.8 classic --json
 
 <!-- -->
 
@@ -86,7 +86,7 @@ There are several formats which you can print detailed information in. In all fo
 
 The performance of two or more implementations can be compared against the first:
 
-    bench compare 2.2.3 rbx-2.5.8 jruby-1.7.18 classic
+    bench9000 compare 2.2.3 rbx-2.5.8 jruby-1.7.18 classic
 
 <!-- -->
 
@@ -100,7 +100,7 @@ The percentage shows performance of each implementation beyond the first, relati
 
 Set a reference point with some Ruby:
 
-    bench compare-reference 2.2.3 classic
+    bench9000 compare-reference 2.2.3 classic
 
 <!-- -->
 
@@ -112,7 +112,7 @@ This writes data to `reference.txt`.
 
 You can then compare against this reference point multiple times:
 
-    bench compare-reference jruby-1.7.18-noindy jruby-1.7.18-indy
+    bench9000 compare-reference jruby-1.7.18-noindy jruby-1.7.18-indy
 
 <!-- -->
 
@@ -126,7 +126,7 @@ This reads data from `reference.txt`.
 
 To generate a detailed interactive report with charts and tables:
 
-    bench report 2.2.3 rbx-2.5.8 classic
+    bench9000 report 2.2.3 rbx-2.5.8 classic
 
 The output will go into report.html. You can set `--baseline implementation` to configure which implementation to use as the default baseline. You can set `--notes notes.html` to include extra content in the notes tab.
 
@@ -136,13 +136,13 @@ All commands accept a `--data` flag. If this is set measurements will be read fr
 
 You can use this with your commands as normal:
 
-    bench report 2.2.3 rbx-2.5.8 classic --data data.txt
+    bench9000 report 2.2.3 rbx-2.5.8 classic --data data.txt
 
 This allows you to interrupt and resume measurements, and to keep measurements from one report to use in another, such as implementations that have not changed.
 
 The `remove` command allows measurements to be removed from the file. Here the listed implementations and benchmarks are those to remove, rather than those to measure:
 
-    bench remove 2.2.3 --data data.txt
+    bench9000 remove 2.2.3 --data data.txt
 
 A common use of this is to keep a file with measurements from implementations that are stable, and to remove development implementations to re-measure after changes.
 
@@ -155,7 +155,7 @@ If you want to run a benchmark manually, you can use `--show-commands` to get th
 
 ## Configuration
 
-Configuration files specify the available Ruby implementations, benchmarks and benchmark groups. A configuration file is automatically loaded with sensible defaults. You can load additional configuration files for any command using `--config file`.
+Configuration files specify the available Ruby implementations, benchmarks and benchmark groups. A configuration file named `default.config.rb`is automatically loaded. It's being looked up in `{.,bench,benchmark,benchmarks}` directories. You can load additional configuration files for any command using `--config file` (Using same directories for lookup. Suffix `.config.rb` can be omitted.). 
 
 ## Implementations
 
@@ -199,3 +199,7 @@ We have chosen T0 to be 30, N to be 20, E to be 0.1, W to be 100, T1 to be 240, 
 ### Error
 
 We currently use the standard deviation as our error.
+
+## Rubygem
+
+This tool is also released as a gem for use in other projects. See [example usage](https://github.com/ruby-concurrency/concurrent-ruby/tree/master/benchmarks). 
