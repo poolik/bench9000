@@ -13,11 +13,11 @@ class RedBlackTree
     BLACK = :black
     COLORS = [RED, BLACK].freeze
 
-    def initialize(key, color = RED)
+    def initialize(key, color, nil_node)
       raise ArgumentError, "Bad value for color parameter" unless COLORS.include?(color)
       @color = color
       @key = key
-      @left = @right = @parent = NilNode.instance
+      @left = @right = @parent = nil_node
     end
 
     def black?
@@ -30,21 +30,6 @@ class RedBlackTree
   end
 
   class NilNode < Node
-    class << self
-      private :new
-
-      # it's not thread safe
-      def instance
-        @instance ||= begin
-          def instance
-            return @instance
-          end
-
-          new
-        end
-      end
-    end
-
     def initialize
       self.color = BLACK
       self.key = 0
@@ -64,12 +49,13 @@ class RedBlackTree
   attr_accessor :size
 
   def initialize
-    self.root = NilNode.instance
+    @nil_node = NilNode.new
+    self.root = @nil_node
     self.size = 0
   end
 
   def add(key)
-    insert(Node.new(key))
+    insert(Node.new(key, Node::RED, @nil_node))
   end
 
   def insert(x)
@@ -260,7 +246,7 @@ private
   end
 
   def insert_helper(z)
-    y = NilNode.instance
+    y = @nil_node
     x = root
     while !x.nil?
       y = x
