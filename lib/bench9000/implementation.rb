@@ -99,7 +99,7 @@ module Bench
 
   end
 
-  HARNESS_DIR = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+  HARNESS_DIR = File.dirname(File.dirname(__FILE__))
 
   class RbenvImplementation < Implementation
 
