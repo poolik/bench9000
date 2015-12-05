@@ -30,13 +30,15 @@
 
 <h3>Warmup</h3>
 
-<p>We consider an implementation to be warmed up when the last N samples have a range relative to the mean of less than E. When a run of N samples have a range less than that, they are considered to be the first N samples where the implementation is warmed up. We also run for at least W seconds before considering warmup.</p>
+<p>Before we consider if an implementation is warmed up, we run for at least T0 seconds.</p>
+
+<p>We then consider an implementation to be warmed up when the last N samples have a range relative to the mean of less than E. When a run of N samples have a range less than that, they are considered to be the first N samples where the implementation is warmed up. If the benchmark does not reach this state within W samples or within T1 seconds, we give the user a warning and will start measuring samples anyway. Some benchmarks just don't warm up, or don't warm up in reasonable time. It's fine to ignore this warning in normal usage.</p>
 
 <p>We then take S samples (starting with the last N that passed our warmup test) for our measurements.</p>
 
-<p>If you are going to publish results based on these benchmarks, you should manually verify warmup using lag or autocorrelation plots.</p>
+<p>If you are going to publish results based on these benchmarks, you should manually verify warmup using lag or auto-correlation plots.</p>
 
-<p>We have chosen W to be 30, N to be 20, E to be 0.1 and S to be 10. These are arbitrary, but by comparing with the lag plots of our data they do seem to do the right thing in the majority of cases. Some benchmarks do not warm up, in which case we run up to 100 warmup iterations.</p>
+<p>We have chosen T0 to be 30, N to be 20, E to be 0.1, W to be 100, T1 to be 240, and S to be 10. These are arbitrary, but by comparing with the lag plots of our data they do seem to do the right thing.</p>
 
 <p>Where we summarise across benchmarks we report a <a href="http://ece.uprm.edu/~nayda/Courses/Icom5047F06/Papers/paper4.pdf">geometric mean</a>.</p>
 

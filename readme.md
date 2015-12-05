@@ -186,13 +186,15 @@ You can add your own implementations by writing your own config file, or use the
 
 ### Warmup
 
-We consider an implementation to be warmed up when the last N samples have a range relative to the mean of less than E. When a run of N samples have a range less than that, they are considered to be the first N samples where the implementation is warmed up. If the benchmark does not reach this state within W samples, we give the user a warning and will start measuring samples anyway. Some benchmarks just don't warm up, or don't warm up in reasonable time. It's fine to ignore this warning in normal usage.
+Before we consider if an implementation is warmed up, we run for at least T0 seconds.
+
+We then consider an implementation to be warmed up when the last N samples have a range relative to the mean of less than E. When a run of N samples have a range less than that, they are considered to be the first N samples where the implementation is warmed up. If the benchmark does not reach this state within W samples or within T1 seconds, we give the user a warning and will start measuring samples anyway. Some benchmarks just don't warm up, or don't warm up in reasonable time. It's fine to ignore this warning in normal usage.
 
 We then take S samples (starting with the last N that passed our warmup test) for our measurements.
 
 If you are going to publish results based on these benchmarks, you should manually verify warmup using lag or auto-correlation plots.
 
-We have chosen N to be 10, E to be 0.2, W to be 100 and S to be 10. These are arbitrary, but by comparing with the lag plots of our data they do seem to do the right thing.
+We have chosen T0 to be 30, N to be 20, E to be 0.1, W to be 100, T1 to be 240, and S to be 10. These are arbitrary, but by comparing with the lag plots of our data they do seem to do the right thing.
 
 ### Error
 
