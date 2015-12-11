@@ -30,15 +30,13 @@ module Bench
 
       config = Config.new
 
-      # try to find and load default.config.rb file
-      load_configuration_file(config, 'default')
-
       args = args.dup
 
       command_name = args.shift
 
-      subjects = []
-      flags    = {}
+      subjects   = []
+      flags      = {}
+      configured = false
 
       until args.empty?
         arg = args.shift
@@ -46,7 +44,8 @@ module Bench
         if arg.start_with? "--"
           case arg
           when "--config"
-            load_configuration_file config, args.shift
+            configured = true
+            config.load args.shift
           when "--data"
             flags[arg] = args.shift
           when "--baseline"
@@ -79,6 +78,11 @@ module Bench
         else
           subjects.push arg
         end
+      end
+
+      unless configured
+        puts 'At least one config file is required.'
+        exit 1
       end
 
       implementations = []
@@ -240,27 +244,6 @@ module Bench
       end
 
       puts "took #{Time.now - start}s"
-    end
-
-    def self.load_configuration_file(config, name, fail_on_missing = true)
-      if name.scan('/').any?
-        config.load File.expand_path(name)
-      else
-        full_name = if name =~ /\.config\.rb$/
-                      name
-                    else
-                      name + '.config.rb'
-                    end
-
-        config_files = Dir["{.,bench,benchmark,benchmarks}/#{full_name}"]
-        unless config_files.any?
-          puts "Configuration file #{name} not found."
-          exit 1
-        end
-        config_files.each do |config_file|
-          config.load config_file
-        end
-      end
     end
 
   end
