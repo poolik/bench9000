@@ -103,7 +103,7 @@ module Bench
 
   class RbenvImplementation < Implementation
 
-    RBENV_ROOT = `rbenv root`.chop
+    RBENV_ROOT = `rbenv root`.chop rescue nil
 
     def initialize(name, version, flags)
       @name = name
