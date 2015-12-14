@@ -128,7 +128,7 @@ To generate a detailed interactive report with charts and tables:
 
     bench9000 --config benchmarks/default.config.rb report 2.2.3 rbx-2.5.8 classic
 
-The output will go into report.html. You can set `--baseline implementation` to configure which implementation to use as the default baseline. You can set `--notes notes.html` to include extra content in the notes tab.
+The output will go into report.html. You can set `--baseline implementation` to configure which implementation to use as the default baseline. You can set `--notes notes.html` to include extra content in the notes tab. The report allows you to interactively: select implementations and tests, optionally summarize the results, compare against a baseline implementation or compare by score.
 
 ## Separating measurement and report generation
 
