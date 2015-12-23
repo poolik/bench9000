@@ -170,14 +170,13 @@ The default configuration includes common Ruby implementations which are expecte
 * `jruby-9.0.4.0-int`
 * `jruby-9.0.4.0-noindy`
 * `jruby-9.0.4.0-indy`
+* `jruby-9.0.4.0-int-graal` set `GRAAL_BIN`
+* `jruby-9.0.4.0-noindy-graal` set `GRAAL_BIN`
+* `jruby-9.0.4.0-indy-graal` set `GRAAL_BIN`
 * `rbx-2.5.8-int`
 * `rbx-2.5.8`
 * `topaz-dev`
-
-Development versions of implementations are enabled if you set environment variables to find them. You should have a built version of the implementation in this path, which should be the root directory of the repository.
-
-* `jruby-dev-(int|noindy|indy)` - set `JRUBY_DEV_DIR`
-* `jruby-dev-truffle-nograal` - set `JRUBY_DEV_DIR`
+* `jruby-dev-truffle` - set `JRUBY_DEV_DIR`
 * `jruby-dev-truffle-graal` - set `JRUBY_DEV_DIR` and `GRAAL_BIN`
 
 You can add your own implementations by writing your own config file, or use the `custom` implementation by setting `RUBY_BIN` and `RUBY_ARGS`.

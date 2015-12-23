@@ -31,8 +31,8 @@ module Bench
       eval File.read(file), binding, file, 1
     end
 
-    def rbenv(name, version=name, flags="")
-      @implementations[name] = RbenvImplementation.new(name, version, flags)
+    def rbenv(name, version=name, flags="", env="")
+      @implementations[name] = RbenvImplementation.new(name, version, flags, env)
     end
 
     def binary(name, binary, flags="")

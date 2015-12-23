@@ -17,21 +17,17 @@ rbenv "jruby-9.0.4.0-int", "jruby-9.0.4.0", "-J-Xmx2G -X-C"
 rbenv "jruby-9.0.4.0-noindy", "jruby-9.0.4.0", "-J-Xmx2G -Xcompile.invokedynamic=false"
 rbenv "jruby-9.0.4.0-indy", "jruby-9.0.4.0", "-J-Xmx2G -Xcompile.invokedynamic=true"
 
+rbenv "jruby-9.0.4.0-int-graal", "jruby-9.0.4.0", "-J-graal -J-Xmx2G -X-C", "JAVACMD=#{ENV['GRAAL_BIN']}"
+rbenv "jruby-9.0.4.0-noindy-graal", "jruby-9.0.4.0", "-J-graal -J-Xmx2G -Xcompile.invokedynamic=false", "JAVACMD=#{ENV['GRAAL_BIN']}"
+rbenv "jruby-9.0.4.0-indy-graal", "jruby-9.0.4.0", "-J-graal -J-Xmx2G -Xcompile.invokedynamic=true", "JAVACMD=#{ENV['GRAAL_BIN']}"
+
 rbenv "rbx-2.5.8-int", "rbx-2.5.8", "-Xint"
 rbenv "rbx-2.5.8"
 
 rbenv "topaz-dev"
 
-if ENV.has_key? "JRUBY_DEV_DIR"
-  binary "jruby-dev-int", "#{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -X-C"
-  binary "jruby-dev-noindy", "#{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -Xcompile.invokedynamic=false"
-  binary "jruby-dev-indy", "#{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -Xcompile.invokedynamic=true"
-  binary "jruby-dev-truffle-nograal", "#{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -X+T"
-
-  if ENV.has_key? "GRAAL_BIN"
-    binary "jruby-dev-truffle-graal", "JAVACMD=#{ENV['GRAAL_BIN']} #{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -J-d64 -J-server -J-Djvmci.option.TruffleCompilationExceptionsAreFatal=true -X+T"
-  end
-end
+binary "jruby-dev-truffle", "#{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -J-d64 -J-server -X+T"
+binary "jruby-dev-truffle-graal", "JAVACMD=#{ENV['GRAAL_BIN']} #{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -J-d64 -J-server -J-Djvmci.option.TruffleCompilationExceptionsAreFatal=true -X+T"
 
 if ENV.has_key? "RUBY_BIN" and ENV.has_key? "RUBY_ARGS"
   binary "custom", ENV['RUBY_BIN'], ENV['RUBY_ARGS']

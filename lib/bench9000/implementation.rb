@@ -105,14 +105,15 @@ module Bench
 
     RBENV_ROOT = `rbenv root`.chop rescue nil
 
-    def initialize(name, version, flags)
+    def initialize(name, version, flags, env)
       @name = name
       @version = version
       @flags = flags
+      @env = env
     end
 
     def command(benchmark)
-      "#{RBENV_ROOT}/versions/#{@version}/bin/ruby #{@flags} -I#{HARNESS_DIR} #{benchmark.flags} #{benchmark.file}"
+      "#{@env} #{RBENV_ROOT}/versions/#{@version}/bin/ruby #{@flags} -I#{HARNESS_DIR} #{benchmark.flags} #{benchmark.file}"
     end
 
   end
