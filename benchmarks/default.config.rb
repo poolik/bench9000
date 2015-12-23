@@ -29,7 +29,7 @@ if ENV.has_key? "JRUBY_DEV_DIR"
   binary "jruby-dev-truffle-nograal", "#{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -X+T"
 
   if ENV.has_key? "GRAAL_BIN"
-    binary "jruby-dev-truffle-graal", "JAVACMD=#{ENV['GRAAL_BIN']} #{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -J-d64 -J-server -J-G:+TruffleCompilationExceptionsAreFatal -X+T"
+    binary "jruby-dev-truffle-graal", "JAVACMD=#{ENV['GRAAL_BIN']} #{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -J-d64 -J-server -J-Djvmci.option.TruffleCompilationExceptionsAreFatal=true -X+T"
   end
 end
 
