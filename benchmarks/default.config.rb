@@ -11,7 +11,7 @@ rbenv "1.9.3-p551"
 rbenv "2.0.0-p647"
 rbenv "2.1.7"
 rbenv "2.2.3"
-rbenv "2.3.0-dev"
+rbenv "2.3.0"
 
 rbenv "jruby-9.0.4.0-int", "jruby-9.0.4.0", "-J-Xmx2G -X-C"
 rbenv "jruby-9.0.4.0-noindy", "jruby-9.0.4.0", "-J-Xmx2G -Xcompile.invokedynamic=false"

@@ -166,7 +166,7 @@ The default configuration includes common Ruby implementations which are expecte
 * `2.0.0-p647`
 * `2.1.7`
 * `2.2.3`
-* `2.3.0-dev`
+* `2.3.0`
 * `jruby-9.0.4.0-int`
 * `jruby-9.0.4.0-noindy`
 * `jruby-9.0.4.0-indy`
