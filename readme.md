@@ -163,7 +163,7 @@ The default configuration includes common Ruby implementations which are expecte
 
 * `1.8.7-p375`
 * `1.9.3-p551`
-* `2.0.0-p647`
+* `2.0.0-p648`
 * `2.1.8`
 * `2.2.4`
 * `2.3.0`
