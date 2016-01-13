@@ -16,12 +16,12 @@ Detailed notes on the methodology we have used can be found in the final section
 
 To get an abstract score that represents performance with higher is better:
 
-    bench9000 --config benchmarks/default.config.rb score 2.2.3 classic
+    bench9000 --config benchmarks/default.config.rb score 2.2.4 classic
 
 <!-- -->
 
-    classic-mandelbrot 2.2.3 2000
-    classic-nbody 2.2.3 2000
+    classic-mandelbrot 2.2.4 2000
+    classic-nbody 2.2.4 2000
     ...
 
 The score is `1 / time * arbitrary constant`, with the arbitrary constant so that JRuby on a typical system achieves around the order of 1000.
@@ -36,13 +36,13 @@ There are several formats which you can print detailed information in. In all fo
 
 `--value-per-line` lists each value on its own line with keys, perhaps for reading by another program:
 
-    bench9000 --config benchmarks/default.config.rb detail 2.2.3 rbx-2.5.8 classic --value-per-line
+    bench9000 --config benchmarks/default.config.rb detail 2.2.4 rbx-2.5.8 classic --value-per-line
 
 <!-- -->
 
-    classic-mandelbrot 2.2.3 warmup 20
-    classic-mandelbrot 2.2.3 sample 10
-    classic-mandelbrot 2.2.3 score 2000
+    classic-mandelbrot 2.2.4 warmup 20
+    classic-mandelbrot 2.2.4 sample 10
+    classic-mandelbrot 2.2.4 score 2000
     classic-mandelbrot rbx-2.5.8 warmup 20
     classic-mandelbrot rbx-2.5.8 sample 10
     classic-mandelbrot rbx-2.5.8 score 2000
@@ -50,7 +50,7 @@ There are several formats which you can print detailed information in. In all fo
 
 `--benchmark-per-line` lists one benchmark per line, with clusters of values for each implementation and no keys, perhaps for pasting into a spreadsheet:
 
-    bench9000 --config benchmarks/default.config.rb detail 2.2.3 rbx-2.5.8 classic --benchmark-per-line
+    bench9000 --config benchmarks/default.config.rb detail 2.2.4 rbx-2.5.8 classic --benchmark-per-line
 
 <!-- -->
 
@@ -59,7 +59,7 @@ There are several formats which you can print detailed information in. In all fo
 
 `--json` outputs all the data in JSON:
 
-    bench9000 --config benchmarks/default.config.rb detail 2.2.3 rbx-2.5.8 classic --json
+    bench9000 --config benchmarks/default.config.rb detail 2.2.4 rbx-2.5.8 classic --json
 
 <!-- -->
 
@@ -86,7 +86,7 @@ There are several formats which you can print detailed information in. In all fo
 
 The performance of two or more implementations can be compared against the first:
 
-    bench9000 --config benchmarks/default.config.rb compare 2.2.3 rbx-2.5.8 jruby-1.7.18 classic
+    bench9000 --config benchmarks/default.config.rb compare 2.2.4 rbx-2.5.8 jruby-1.7.18 classic
 
 <!-- -->
 
@@ -100,7 +100,7 @@ The percentage shows performance of each implementation beyond the first, relati
 
 Set a reference point with some Ruby:
 
-    bench9000 --config benchmarks/default.config.rb compare-reference 2.2.3 classic
+    bench9000 --config benchmarks/default.config.rb compare-reference 2.2.4 classic
 
 <!-- -->
 
@@ -126,7 +126,7 @@ This reads data from `reference.txt`.
 
 To generate a detailed interactive report with charts and tables:
 
-    bench9000 --config benchmarks/default.config.rb report 2.2.3 rbx-2.5.8 classic
+    bench9000 --config benchmarks/default.config.rb report 2.2.4 rbx-2.5.8 classic
 
 The output will go into report.html. You can set `--baseline implementation` to configure which implementation to use as the default baseline. You can set `--notes notes.html` to include extra content in the notes tab. The report allows you to interactively: select implementations and tests, optionally summarize the results, compare against a baseline implementation or compare by score.
 
@@ -136,13 +136,13 @@ All commands accept a `--data` flag. If this is set measurements will be read fr
 
 You can use this with your commands as normal:
 
-    bench9000 --config benchmarks/default.config.rb report 2.2.3 rbx-2.5.8 classic --data data.txt
+    bench9000 --config benchmarks/default.config.rb report 2.2.4 rbx-2.5.8 classic --data data.txt
 
 This allows you to interrupt and resume measurements, and to keep measurements from one report to use in another, such as implementations that have not changed.
 
 The `remove` command allows measurements to be removed from the file. Here the listed implementations and benchmarks are those to remove, rather than those to measure:
 
-    bench9000 --config benchmarks/default.config.rb remove 2.2.3 --data data.txt
+    bench9000 --config benchmarks/default.config.rb remove 2.2.4 --data data.txt
 
 A common use of this is to keep a file with measurements from implementations that are stable, and to remove development implementations to re-measure after changes.
 
@@ -164,8 +164,8 @@ The default configuration includes common Ruby implementations which are expecte
 * `1.8.7-p375`
 * `1.9.3-p551`
 * `2.0.0-p647`
-* `2.1.7`
-* `2.2.3`
+* `2.1.8`
+* `2.2.4`
 * `2.3.0`
 * `jruby-9.0.4.0-int`
 * `jruby-9.0.4.0-noindy`

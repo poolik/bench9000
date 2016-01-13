@@ -8,9 +8,9 @@
 
 rbenv "1.8.7-p375"
 rbenv "1.9.3-p551"
-rbenv "2.0.0-p647"
-rbenv "2.1.7"
-rbenv "2.2.3"
+rbenv "2.0.0-p648"
+rbenv "2.1.8"
+rbenv "2.2.4"
 rbenv "2.3.0"
 
 rbenv "jruby-9.0.4.0-int", "jruby-9.0.4.0", "-J-Xmx2G -X-C"
