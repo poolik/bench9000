@@ -159,7 +159,7 @@ Configuration files specify the available Ruby implementations, benchmarks and b
 
 ## Implementations
 
-The default configuration includes common Ruby implementations which are expected to be found in `rbenv`.
+The default configuration includes common Ruby implementations which are expected to be found in `~/.rbenv/versions` by default (so maybe installed by `ruby-build`) but this configured by setting the `RUBIES_DIR` environment variable.
 
 * `1.8.7-p375`
 * `1.9.3-p551`
