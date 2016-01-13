@@ -21,8 +21,8 @@ rbenv "jruby-9.0.4.0-int-graal", "jruby-9.0.4.0", "-J-graal -J-Xmx2G -X-C", "JAV
 rbenv "jruby-9.0.4.0-noindy-graal", "jruby-9.0.4.0", "-J-graal -J-Xmx2G -Xcompile.invokedynamic=false", "JAVACMD=#{ENV['GRAAL_BIN']}"
 rbenv "jruby-9.0.4.0-indy-graal", "jruby-9.0.4.0", "-J-graal -J-Xmx2G -Xcompile.invokedynamic=true", "JAVACMD=#{ENV['GRAAL_BIN']}"
 
-rbenv "rbx-2.5.8-int", "rbx-2.5.8", "-Xint"
-rbenv "rbx-2.5.8"
+rbenv "rbx-3.5.0-int", "rbx-3.5.0", "-Xint"
+rbenv "rbx-3.5.0"
 
 rbenv "topaz-dev"
 
@@ -198,5 +198,5 @@ benchmark_group "15",
 
 # Exclusions - benchmarks that break so badly that we can't run them at all
 
-fails_hard "rbx-2.5.8", "classic-fasta-string"
-fails_hard "rbx-2.5.8-int", "classic-fasta-string"
+fails_hard "rbx-3.5.0", "classic-fasta-string"
+fails_hard "rbx-3.5.0-int", "classic-fasta-string"

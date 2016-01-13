@@ -36,21 +36,21 @@ There are several formats which you can print detailed information in. In all fo
 
 `--value-per-line` lists each value on its own line with keys, perhaps for reading by another program:
 
-    bench9000 --config benchmarks/default.config.rb detail 2.2.4 rbx-2.5.8 classic --value-per-line
+    bench9000 --config benchmarks/default.config.rb detail 2.2.4 rbx-3.5.0 classic --value-per-line
 
 <!-- -->
 
     classic-mandelbrot 2.2.4 warmup 20
     classic-mandelbrot 2.2.4 sample 10
     classic-mandelbrot 2.2.4 score 2000
-    classic-mandelbrot rbx-2.5.8 warmup 20
-    classic-mandelbrot rbx-2.5.8 sample 10
-    classic-mandelbrot rbx-2.5.8 score 2000
+    classic-mandelbrot rbx-3.5.0 warmup 20
+    classic-mandelbrot rbx-3.5.0 sample 10
+    classic-mandelbrot rbx-3.5.0 score 2000
     ...
 
 `--benchmark-per-line` lists one benchmark per line, with clusters of values for each implementation and no keys, perhaps for pasting into a spreadsheet:
 
-    bench9000 --config benchmarks/default.config.rb detail 2.2.4 rbx-2.5.8 classic --benchmark-per-line
+    bench9000 --config benchmarks/default.config.rb detail 2.2.4 rbx-3.5.0 classic --benchmark-per-line
 
 <!-- -->
 
@@ -59,7 +59,7 @@ There are several formats which you can print detailed information in. In all fo
 
 `--json` outputs all the data in JSON:
 
-    bench9000 --config benchmarks/default.config.rb detail 2.2.4 rbx-2.5.8 classic --json
+    bench9000 --config benchmarks/default.config.rb detail 2.2.4 rbx-3.5.0 classic --json
 
 <!-- -->
 
@@ -86,7 +86,7 @@ There are several formats which you can print detailed information in. In all fo
 
 The performance of two or more implementations can be compared against the first:
 
-    bench9000 --config benchmarks/default.config.rb compare 2.2.4 rbx-2.5.8 jruby-1.7.18 classic
+    bench9000 --config benchmarks/default.config.rb compare 2.2.4 rbx-3.5.0 jruby-1.7.18 classic
 
 <!-- -->
 
@@ -126,7 +126,7 @@ This reads data from `reference.txt`.
 
 To generate a detailed interactive report with charts and tables:
 
-    bench9000 --config benchmarks/default.config.rb report 2.2.4 rbx-2.5.8 classic
+    bench9000 --config benchmarks/default.config.rb report 2.2.4 rbx-3.5.0 classic
 
 The output will go into report.html. You can set `--baseline implementation` to configure which implementation to use as the default baseline. You can set `--notes notes.html` to include extra content in the notes tab. The report allows you to interactively: select implementations and tests, optionally summarize the results, compare against a baseline implementation or compare by score.
 
@@ -136,7 +136,7 @@ All commands accept a `--data` flag. If this is set measurements will be read fr
 
 You can use this with your commands as normal:
 
-    bench9000 --config benchmarks/default.config.rb report 2.2.4 rbx-2.5.8 classic --data data.txt
+    bench9000 --config benchmarks/default.config.rb report 2.2.4 rbx-3.5.0 classic --data data.txt
 
 This allows you to interrupt and resume measurements, and to keep measurements from one report to use in another, such as implementations that have not changed.
 
@@ -173,8 +173,8 @@ The default configuration includes common Ruby implementations which are expecte
 * `jruby-9.0.4.0-int-graal` set `GRAAL_BIN`
 * `jruby-9.0.4.0-noindy-graal` set `GRAAL_BIN`
 * `jruby-9.0.4.0-indy-graal` set `GRAAL_BIN`
-* `rbx-2.5.8-int`
-* `rbx-2.5.8`
+* `rbx-3.5.0-int`
+* `rbx-3.5.0`
 * `topaz-dev`
 * `jruby-dev-truffle` - set `JRUBY_DEV_DIR`
 * `jruby-dev-truffle-graal` - set `JRUBY_DEV_DIR` and `GRAAL_BIN`
