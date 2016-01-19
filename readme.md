@@ -98,9 +98,9 @@ The percentage shows performance of each implementation beyond the first, relati
 
 ## Comparing performance against a reference
 
-Set a reference point with some Ruby:
+Set a reference point with some Ruby and the `reference` command:
 
-    bench9000 --config benchmarks/default.config.rb compare-reference 2.2.4 classic
+    bench9000 --config benchmarks/default.config.rb reference 2.2.4 classic
 
 <!-- -->
 
@@ -110,7 +110,7 @@ Set a reference point with some Ruby:
 
 This writes data to `reference.txt`.
 
-You can then compare against this reference point multiple times:
+You can then compare against this reference point multiple times using `compare-reference`:
 
     bench9000 --config benchmarks/default.config.rb compare-reference jruby-1.7.18-noindy jruby-1.7.18-indy
 
