@@ -39,7 +39,6 @@ def eval_A(i,j)
 end
 
 def eval_A_times_u(u)
-  v, i = nil, nil
   (0..u.length-1).collect { |i|
     v = 0
     for j in 0..u.length-1
@@ -50,7 +49,6 @@ def eval_A_times_u(u)
 end
 
 def eval_At_times_u(u)
-  v, i = nil, nil
   (0..u.length-1).collect { |i|
     v = 0
     for j in 0..u.length-1
