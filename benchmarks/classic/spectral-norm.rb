@@ -35,7 +35,7 @@
 # http://benchmarksgame.alioth.debian.org/u64q/program.php?test=spectralnorm&lang=yarv&id=1
 
 def eval_A(i,j)
-  return 1.0 / ((i+j)*(i+j+1)/2+i+1)
+  1.0 / ((i+j)*(i+j+1)/2+i+1)
 end
 
 def eval_A_times_u(u)
@@ -59,7 +59,7 @@ def eval_At_times_u(u)
 end
 
 def eval_AtA_times_u(u)
-  return eval_At_times_u(eval_A_times_u(u))
+  eval_At_times_u(eval_A_times_u(u))
 end
 
 def spectral_norm(n)
