@@ -86,7 +86,7 @@ There are several formats which you can print detailed information in. In all fo
 
 The performance of two or more implementations can be compared against the first:
 
-    bench9000 compare --config benchmarks/default.config.rb 2.3.0 rbx-3.5.0 jruby-9.0.4.0 classic
+    bench9000 compare --config benchmarks/default.config.rb 2.3.0 rbx-3.5.0 jruby-9.0.5.0 classic
 
 <!-- -->
 
@@ -112,7 +112,7 @@ This writes data to `reference.txt`.
 
 You can then compare against this reference point multiple times using `compare-reference`:
 
-    bench9000 compare-reference --config benchmarks/default.config.rb jruby-9.0.4.0-noindy jruby-9.0.4.0-indy
+    bench9000 compare-reference --config benchmarks/default.config.rb jruby-9.0.5.0-noindy jruby-9.0.5.0-indy
 
 <!-- -->
 
@@ -167,12 +167,12 @@ The default configuration includes common Ruby implementations which are expecte
 * `2.1.8`
 * `2.2.4`
 * `2.3.0`
-* `jruby-9.0.4.0-int`
-* `jruby-9.0.4.0-noindy`
-* `jruby-9.0.4.0-indy`
-* `jruby-9.0.4.0-int-graal` set `GRAAL_BIN`
-* `jruby-9.0.4.0-noindy-graal` set `GRAAL_BIN`
-* `jruby-9.0.4.0-indy-graal` set `GRAAL_BIN`
+* `jruby-9.0.5.0-int`
+* `jruby-9.0.5.0-noindy`
+* `jruby-9.0.5.0-indy`
+* `jruby-9.0.5.0-int-graal` set `GRAAL_BIN`
+* `jruby-9.0.5.0-noindy-graal` set `GRAAL_BIN`
+* `jruby-9.0.5.0-indy-graal` set `GRAAL_BIN`
 * `rbx-3.5.0-int`
 * `rbx-3.5.0`
 * `topaz-dev`
