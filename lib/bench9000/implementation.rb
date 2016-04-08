@@ -5,6 +5,7 @@
 # Eclipse Public License version 1.0
 # GNU General Public License version 2
 # GNU Lesser General Public License version 2.1
+require 'fileutils'
 
 module Bench
 
@@ -134,6 +135,69 @@ module Bench
       "#{@binary} #{@flags} -I#{HARNESS_DIR} #{benchmark.flags} #{benchmark.file}"
     end
 
+  end
+
+  class ReloadingImplementation < BinaryImplementation
+
+    def initialize(name, binary, flags)
+      super(name, binary, flags)
+    end
+
+    RELOAD_SAMPLE_COUNT = 60
+
+    def measure(flags, benchmark)
+      command = "bash -c \"#{command(benchmark)}\""
+
+      puts command if flags.has_key? "--show-commands"
+
+      samples = []
+
+      IO.popen command, "r+" do |subprocess|
+        while true
+          line = subprocess.gets
+
+          if line.nil? || line == "error"
+            return :failed
+          end
+
+          unless line.match(/\d+\.\d+/)
+            STDERR.puts line
+            next
+          end
+
+          time = line.to_f
+          puts time if flags.has_key? "--show-samples"
+
+          samples.push time
+          if first_reload(samples) or second_reload(samples)
+            do_reload(benchmark, first_reload(samples))
+          end
+          if samples.size < RELOAD_SAMPLE_COUNT
+            subprocess.puts "continue"
+          else
+            subprocess.puts "stop"
+            break
+          end
+        end
+      end
+
+      raise 'not enough samples' if samples.nil? || samples.size < RELOAD_SAMPLE_COUNT
+
+      Measurement.new([], samples)
+    end
+
+    def second_reload(samples)
+      samples.size == 40
+    end
+
+    def first_reload(samples)
+      samples.size == 20
+    end
+
+    def do_reload(benchmark, first)
+      puts "Reloading " + benchmark.file
+      FileUtils.cp(File.join(File.dirname(benchmark.file) + "-reloading" + (first ? "1" : "2"), File.basename(benchmark.file)), benchmark.file, {:verbose => true})
+    end
   end
 
 end

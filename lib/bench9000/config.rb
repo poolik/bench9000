@@ -39,6 +39,10 @@ module Bench
       @implementations[name] = BinaryImplementation.new(name, binary, flags)
     end
 
+    def reloading(name, binary, flags="")
+      @implementations[name] = ReloadingImplementation.new(name, binary, flags)
+    end
+
     def implementation_group(name, *implementations)
       @implementation_groups[name] = Group.new(name, implementations.map { |i|
         implementation = @implementations[i]
