@@ -197,6 +197,7 @@ module Bench
     def do_reload(benchmark, first)
       puts "Reloading " + benchmark.file
       FileUtils.cp(File.join(File.dirname(benchmark.file) + "-reloading" + (first ? "1" : "2"), File.basename(benchmark.file)), benchmark.file, {:verbose => true})
+      sleep 2
     end
   end
 
