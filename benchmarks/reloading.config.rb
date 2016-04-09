@@ -9,8 +9,8 @@
 
 binary "jruby-dev-truffle", "#{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -X+T"
 binary "jruby-dev-truffle-reloader", "#{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-javaagent:/Users/poolik/projects/truffle-reloader/truffle-reloader-agent/target/truffle-reloader.jar -J-Xmx2G -X+T"
-# binary "jruby-truffle-graal", "JAVACMD=#{ENV['GRAAL_BIN']} #{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -J-G:+TruffleCompilationExceptionsAreFatal -X+T"
-# binary "jruby-truffle-graal-reloader", "JAVACMD=#{ENV['GRAAL_BIN']} #{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-javaagent:/Users/poolik/projects/truffle-reloader/truffle-reloader-agent/target/truffle-reloader.jar -J-Xmx2G -J-G:+TruffleCompilationExceptionsAreFatal -X+T"
+#binary "jruby-truffle-graal", "JAVACMD=#{ENV['GRAAL_BIN']} #{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -J-G:+TruffleCompilationExceptionsAreFatal -X+T"
+#binary "jruby-truffle-graal-reloader", "JAVACMD=#{ENV['GRAAL_BIN']} #{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-javaagent:/Users/poolik/projects/truffle-reloader/truffle-reloader-agent/target/truffle-reloader.jar -J-Xmx2G -J-G:+TruffleCompilationExceptionsAreFatal -X+T"
 reloading "jruby-truffle-graal", "JAVACMD=#{ENV['GRAAL_BIN']} #{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-Xmx2G -J-G:+TruffleCompilationExceptionsAreFatal -X+T"
 reloading "jruby-truffle-graal-reloader", "JAVACMD=#{ENV['GRAAL_BIN']} #{ENV['JRUBY_DEV_DIR']}/bin/jruby", "-J-javaagent:/Users/poolik/projects/truffle-reloader/truffle-reloader-agent/target/truffle-reloader.jar -J-Xmx2G -J-G:+TruffleCompilationExceptionsAreFatal -X+T"
 
@@ -30,6 +30,10 @@ benchmark "classic-red-black", "#{default_benchmarks_dir}/classic/red-black.rb"
 benchmark "classic-matrix-multiply", "#{default_benchmarks_dir}/classic/matrix-multiply.rb"
 benchmark "classic-fasta-string", "#{default_benchmarks_dir}/classic/fasta-string.rb"
 
+benchmark_group "reload",
+  "classic-matrix-multiply",
+  "classic-mandelbrot"
+    
 benchmark_group "classic",
   "classic-binary-trees",
   "classic-fannkuch-redux",
