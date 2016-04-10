@@ -1,3 +1,6 @@
 .idea
 *.gem
 *.data
+*.json
+*.csv
+*.html
